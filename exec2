@@ -1,0 +1,78 @@
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+#include <map>
+#include <string>
+ 
+using namespace std;
+ 
+class WordCounter
+{
+public:
+    int value;
+    WordCounter() : value( 0 ) {}
+     
+    void operator++ (int) { value++; }
+};
+ 
+ostream& operator<<(ostream& st, WordCounter& wc )
+{
+    return st << wc.value;
+}
+ 
+// Remove caracters especiais da string
+bool filter(char c)
+{
+    return isalpha( c ) == 0;
+}
+ 
+const string path = "luiz.txt";
+
+int main()
+{
+    map<string, WordCounter> counter;
+
+	// Le o arquivo 
+    ifstream input;
+    input.open( path.c_str() );
+ 
+    if ( !input )
+    {
+        cout << "Erro ao ler o arquivo: " << input << "\n";
+        return 0;
+    }
+ 
+    string word;     
+ 
+    while ( true )
+    {
+        input >> word;
+ 
+        // Remove caracters especiais da string
+        word.resize( remove_if( word.begin(), word.end(), filter) - word.begin() );
+         
+         // Acrescenta valores ao array com o nome da Palavra
+        if ( input )
+        {
+            counter[ word ]++;
+        }
+        else break;     
+    }
+     
+    map< string, WordCounter,less<string> >::iterator it;
+ 
+    for ( it  = counter.begin();
+          it != counter.end();
+          it++ )
+    {
+        cout << std::setw (15) 
+             << (*it).first            
+             << "\t"
+             << (*it).second
+             << endl;
+    }
+ 
+    return 0;
+}
