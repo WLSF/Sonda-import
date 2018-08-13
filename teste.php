@@ -14,7 +14,7 @@ $me = $MadelineProto->get_self();
 
 if (!$me['bot']) {
     /*
-    $MadelineProto->messages->sendMessage(['peer' => '@luiznn', 'message' => "Olá!\nObrigado por criar o MadelineProto !! <3"]);
+     $MadelineProto->messages->sendMessage(['peer' => '@luiznn', 'message' => "Olá!\nMensagem de Exemplo !! <3"]);
     //$MadelineProto->channels->joinChannel(['channel' => '@MadelineProto']);
 
     try {
@@ -30,7 +30,7 @@ if (!$me['bot']) {
           '_' => 'inputMediaUploadedDocument',
           'file' => 'olamundo.txt',
           'attributes' => [
-              ['_' => 'documentAttributeFilename', 'file_name' => 'olamundo2.txt']
+              ['_' => 'documentAttributeFilename', 'file_name' => 'olamundo.txt']
           ]
       ]
   ]);
@@ -48,7 +48,7 @@ echo "\n" . '-------------------- INFO FILE! --------------------'.PHP_EOL;
  \danog\MadelineProto\Logger::log('Acess Hash: ' . $acess_hash);
  \danog\Madelineproto\Logger::log('Unix Date: '. $date);
  \danog\Madelineproto\Logger::log('Date: '. $date2);
-  \danog\Madelineproto\Logger::log('Time: '. $time);
+ \danog\Madelineproto\Logger::log('Time: '. $time);
  \danog\MadelineProto\Logger::log('Size: '. $size);
  \danog\MadelineProto\Logger::log('Name: '. $filename);
 
