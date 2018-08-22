@@ -24,6 +24,7 @@ if (!$me['bot']) {
     catch (\danog\MadelineProto\RPCErrorException $e) {}
     */
 
+    // Upload File
     $uploadfile = $MadelineProto->messages->sendMedia([
       'peer' => '@luiznn',
       'media' => [
@@ -35,6 +36,9 @@ if (!$me['bot']) {
       ]
   ]);
 
+  // Download File
+  $downloadfile = $MadelineProto->download_to_dir($uploadfile, '/tmp/');  
+    
   $fileid =  $uploadfile["updates"]["1"]["message"]['media']['document']['id'];
   $acess_hash =  $uploadfile["updates"]["1"]["message"]['media']['document']['access_hash'];
   $date =  $uploadfile["updates"]["1"]["message"]['date'];
