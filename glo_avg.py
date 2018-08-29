@@ -32,7 +32,7 @@ def myrange():
 
 
 
-# Gambiarra para ler uma celula em especifico!
+# Gambiarra para ler uma celula especifica!
 def read_cell(x, y):
        with open('BRB1511ED.csv', 'r') as csvfile:
         plots= csv.reader(csvfile, delimiter=';')
