@@ -32,6 +32,7 @@ def myrange():
                 y.append(float(row[4]))
             line_count += 1
 
+	
 def myrange2():
     with open('BRB1511ED.csv', 'r') as csvfile:
         plots= csv.reader(csvfile, delimiter=';')
@@ -55,11 +56,8 @@ def myrange2():
                 y.append(0)
                 
             line_count += 1
-
+	
 		
-		
-		
-
 # Gambiarra para ler uma celula especifica!
 def read_cell(x, y):
        with open('BRB1511ED.csv', 'r') as csvfile:
