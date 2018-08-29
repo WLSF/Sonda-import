@@ -23,14 +23,42 @@ def myrange():
         global line_count
         global vezes
         vezes += 1 
-
         for row in plots:
-            if  (vezes-1*1439) < line_count & line_count < ((vezes*1439)):   # não funciona como deveria!
+            line_min = (vezes-1*1439)
+            line_max = ((vezes*1439)+1)
+            
+            if  line_min < line_count & line_count < line_max:   # não funciona como deveria!
                 x.append(int(row[3]))
                 y.append(float(row[4]))
-                line_count += 1
+            line_count += 1
 
+def myrange2():
+    with open('BRB1511ED.csv', 'r') as csvfile:
+        plots= csv.reader(csvfile, delimiter=';')
+        global line_count
+        global vezes
+        vezes += 1
+        for row in plots:
+            line_min = (vezes-1*1439)
+            line_max = ((vezes*1439)+1)
+            
+            if line_count > line_min:
+                if line_count < line_max:
+                    x.append(int(row[3]))
+                    y.append(float(row[4]))
+                else:
+                    x.append(int(row[3]))
+                    y.append(0)
+                    
+            else:
+                x.append(int(row[3]))
+                y.append(0)
+                
+            line_count += 1
 
+		
+		
+		
 
 # Gambiarra para ler uma celula especifica!
 def read_cell(x, y):
