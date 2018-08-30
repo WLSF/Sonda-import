@@ -15,4 +15,4 @@ As is called the function myrange the number of times is incremented.
 * [DATABASE](http://sonda.ccst.inpe.br/basedados/index.html)
 
 ## Images
- <img width="640" height="480" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_0.png">
+ <img width="1259" height="380" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_0.PNG">
