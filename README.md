@@ -8,9 +8,7 @@ Conforme é chamado a função myrange o numero de vezes é incrementado.
 * 2 vez ou 2 dia = 2878 minutos --- grafico do minuto 1439 ao 2878.
 
 ## Problemas
-* Problema 1 : A partir do segundo dia o gráfico é plotado com as informações e coordenadas do primeiro dia/gráfico, como também ignora a area de plotagem.
-
-* Problema 2 : A partir do segundo gráfico o mesmo imprime as cordenadas iguais ao primeiro, problema talvez relacionado ao array.
+* Problema 1 : A partir do segundo gráfico o mesmo imprime as cordenadas iguais ao primeiro, problema talvez relacionado ao array.
 
 ## Uteis
 * [VARIAVEIS](http://sonda.ccst.inpe.br/infos/variaveis.html)
