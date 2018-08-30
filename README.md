@@ -1,5 +1,5 @@
 ## Sonda-import
-Network data usage "[sonda](http://sonda.ccst.inpe.br/)" for plotting graphs of irradiance
+Network data usage "[SONDA](http://sonda.ccst.inpe.br/)" for plotting graphs of irradiance
 
 ``` Observation: this project is not finished! the images are about the problems. ```
 
