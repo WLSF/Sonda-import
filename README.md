@@ -15,4 +15,4 @@ Conforme é chamado a função myrange o numero de vezes é incrementado.
 * [BASE DE DADOS](http://sonda.ccst.inpe.br/basedados/index.html)
 
 ## Imagens
- <img width="1259" height="576" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_0.PNG">
+ <img width="1259" height="480" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_0.PNG">
