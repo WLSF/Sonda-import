@@ -16,6 +16,3 @@ Conforme é chamado a função myrange o numero de vezes é incrementado.
 
 ## Imagens
  <img width="640" height="480" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_0.png">
- <img width="640" height="480" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_1.png">
- <img width="640" height="480" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_2.png">
- <img width="640" height="480" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_3.png">
