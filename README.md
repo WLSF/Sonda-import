@@ -14,6 +14,7 @@ Conforme é chamado a função myrange o numero de vezes é incrementado.
 * [VARIAVEIS](http://sonda.ccst.inpe.br/infos/variaveis.html)
 * [BASE DE DADOS](http://sonda.ccst.inpe.br/basedados/index.html)
 * [PLANILHA](https://docs.google.com/spreadsheets/d/1ES7P4ceGymjs6OZsKRsFb3sd5BV8xkTk7Xd2MNBP59U/edit?usp=sharing)
+* [Matplotlib: Python plotting](https://matplotlib.org/)
 
 ## Imagens
  <img width="1259" height="380" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_0.PNG">
