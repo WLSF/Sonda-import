@@ -16,7 +16,7 @@ Conforme é chamado a função myrange o numero de vezes é incrementado.
 * [PLANILHA](https://docs.google.com/spreadsheets/d/1ES7P4ceGymjs6OZsKRsFb3sd5BV8xkTk7Xd2MNBP59U/edit?usp=sharing)
 * [Matplotlib: Python plotting](https://matplotlib.org/)
 * [MODELO GL versão 1.2](http://satelite.cptec.inpe.br/radiacao/docs/RefTT/RTecnico001-2011-RST-20110624b.pdf)
-* [AVALIANDO RADIAÇÃO SOLAR POR SATÉLITE(https://github.com/LuizFelipeNeves/Sonda-import/blob/master/src/docs/Avaliando_RSolar_por_Sat%C3%A9lite_Ceballos_et_al.pdf)
+* [AVALIANDO RADIAÇÃO SOLAR POR SATÉLITE](https://github.com/LuizFelipeNeves/Sonda-import/blob/master/src/docs/Avaliando_RSolar_por_Sat%C3%A9lite_Ceballos_et_al.pdf)
 
 ## Imagens
  <img width="1259" height="380" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/Figure_0.PNG">
