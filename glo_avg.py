@@ -25,7 +25,8 @@ with open('BRB1511ED.csv', 'r') as csvfile:
     data = np.genfromtxt(csvfile, delimiter=';')
     
 # Gráfico dos 30 dias.
-while(dia < max_dia): printa()
+while(dia < max_dia): 
+    printa()
 
 # Arruma o espaçamento entre gráficos, caso use o subplot.
 plt.tight_layout()
