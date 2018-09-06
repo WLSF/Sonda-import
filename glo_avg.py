@@ -9,8 +9,9 @@ max_dia = 30 # ~Dia Final or Max day
 
 def printa():
     global dia
-    lin_min = (dia*1439)
-    lin_max = ((dia+1)*1439)
+    dia+= 1
+    lin_min = ((dia-1)*1439)
+    lin_max = (dia*1439)
     x = data[lin_min:lin_max,3]
     y = data[lin_min:lin_max,4]
     plt.figure(dia+1)
@@ -18,7 +19,6 @@ def printa():
     plt.title("Radiação Global Horizontal - Rede Sonda - Dia " + str(dia+1))
     plt.ylabel('Irradiância (Wm-2)')
     plt.xlabel('Minuto')
-    dia+= 1
 
 # Lê a planilha
 with open('BRB1511ED.csv', 'r') as csvfile:
