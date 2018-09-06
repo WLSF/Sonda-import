@@ -13,7 +13,8 @@ Conforme é chamado a função myrange o numero de vezes é incrementado.
 ## Uteis
 * [VARIAVEIS](http://sonda.ccst.inpe.br/infos/variaveis.html)
 * [BASE DE DADOS](http://sonda.ccst.inpe.br/basedados/index.html)
-* [PLANILHA](https://docs.google.com/spreadsheets/d/1ES7P4ceGymjs6OZsKRsFb3sd5BV8xkTk7Xd2MNBP59U/edit?usp=sharing)
+* [PLANILHA SONDA](https://docs.google.com/spreadsheets/d/1ES7P4ceGymjs6OZsKRsFb3sd5BV8xkTk7Xd2MNBP59U/edit?usp=sharing)
+* [PLANILHA Solrad-net](https://docs.google.com/spreadsheets/d/1X-PWb7m5uWbimovofMT0PRdH1fbAE42fSPsN49ktA4Y/edit?usp=sharing)
 * [Matplotlib: Python plotting](https://matplotlib.org/)
 
 
