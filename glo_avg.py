@@ -5,7 +5,7 @@ import numpy as np
 # 2 -  Detectar se o mês tem 31 dias, ou menos.
 
 dia= 0 # ~Dia Inicial
-max_dia = 31 # ~Dia Final or Max day
+max_dia = 30 # ~Dia Final or Max day
 
 def printa():
     global dia
