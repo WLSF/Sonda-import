@@ -21,6 +21,9 @@ def printa():
     dia+= 1
     lin_min = ((dia-1)*1439)
     lin_max = (dia*1439)
+<<<<<<< HEAD
+>>>>>>> e1b96b72460c25bfa4808fd828e77f37f3c776ec
+=======
 >>>>>>> e1b96b72460c25bfa4808fd828e77f37f3c776ec
     x = data[lin_min:lin_max,3]
     y = data[lin_min:lin_max,4]
