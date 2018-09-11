@@ -23,4 +23,6 @@ Conforme é chamado a função myrange o numero de vezes é incrementado.
 * [AVALIANDO RADIAÇÃO SOLAR POR SATÉLITE](https://github.com/LuizFelipeNeves/Sonda-import/blob/master/src/docs/Avaliando_RSolar_por_Sat%C3%A9lite_Ceballos_et_al.pdf)
 
 ## Imagens
- <img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/305.png">
+<img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/305.png">
+<img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/306.png">
+<img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/316.png">
