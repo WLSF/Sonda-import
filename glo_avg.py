@@ -13,7 +13,8 @@ def printa():
     lin_max = ((dia)*1439)
     x = data[lin_min:lin_max,3]
     y = data[lin_min:lin_max,4]
-    plt.figure(dia)
+    
+	plt.figure(dia)
     plt.plot(x,y, '-b') # b- é azul
     plt.title("Radiação Global Horizontal - Rede Sonda - Dia " + str(dia))
     plt.ylabel('Irradiância (Wm-2)')
