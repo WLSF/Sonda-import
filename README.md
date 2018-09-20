@@ -8,7 +8,6 @@ Uso de dados da rede "[SONDA](http://sonda.ccst.inpe.br/)" para plotagem de grá
 * [PLANILHA Solrad-net](https://docs.google.com/spreadsheets/d/1X-PWb7m5uWbimovofMT0PRdH1fbAE42fSPsN49ktA4Y/edit?usp=sharing)
 * [Matplotlib: Python plotting](https://matplotlib.org/)
 
-
 ## Docs
 * [MODELO GL versão 1.2](http://satelite.cptec.inpe.br/radiacao/docs/RefTT/RTecnico001-2011-RST-20110624b.pdf)
 * [AVALIANDO RADIAÇÃO SOLAR POR SATÉLITE](https://github.com/LuizFelipeNeves/Sonda-import/blob/master/src/docs/Avaliando_RSolar_por_Sat%C3%A9lite_Ceballos_et_al.pdf)
@@ -17,3 +16,12 @@ Uso de dados da rede "[SONDA](http://sonda.ccst.inpe.br/)" para plotagem de grá
 <img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/305.png">
 <img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/306.png">
 <img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/316.png">
+
+## Problemas
+    Não realiza a plotagem do ultimo dia.
+
+## Em Desenvolvimento
+    Atualizar eixos
+    Gerar gráfico Média Mensal
+    Atualizar lista unica
+    Comparar Módelos GL old vs GL novo
