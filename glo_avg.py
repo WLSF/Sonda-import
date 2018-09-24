@@ -3,12 +3,25 @@ import csv
 
 # http://sonda.ccst.inpe.br/infos/variaveis.html
 # http://sonda.ccst.inpe.br/basedados/index.html
-            
+
+planilha = 'BRB1511ED.csv'
+ano = int(planilha[3:5])
+mes = int(planilha[5:7])
+
+x=[]
+y=[]
+
+xmensal=[]
+ymensal=[]
+
+# Radiação Global Horizontal
+# Ignore! ==== planilha[3:5]
+# Passar de dia Juliano para dia conforme o mês == xmensal
+
+
 def plot_sonda():
-    with open('BRB1511ED.csv', 'r') as csvfile:
+    with open(planilha, 'r') as csvfile:
         plots= csv.reader(csvfile, delimiter=';')
-        x=[]
-        y=[]
         total = 0
         soma = 0
 
@@ -29,13 +42,16 @@ def plot_sonda():
 
                 plt.figure(dia)
                 plt.plot(x,y, 'b-') #b- é azul
-                plt.title("Radiação Global Horizontal - Rede " + rede + " - Dia " + str(dia))
+                plt.title("Rede Sonda - " + planilha[:7] +  " - Dia [" + str(dia) + "]")
                 plt.ylabel('Irradiância (Wm-2)')
                 plt.xlabel('Tempo (Horas)')
                 plt.ylim(0, 1600)
 
                 media = soma/total
                 plt.text(0.35, 1400, 'Média: %5.2f' % media, bbox={'facecolor':'red', 'alpha':0.5, 'pad':10})
+                xmensal.append(dia)
+                ymensal.append(media)
+
 
                 x.clear()
                 y.clear()   
@@ -52,13 +68,11 @@ def plot_sonda():
 def versao(x):
         global col_dia, col_min, col_irrad, rede
         if x == 0: # Sonda Antigo 
-            rede = 'Sonda'
             col_dia = 2
             col_min = 4
             col_irrad = 5
             
         elif(x == 1): # Sonda Novo
-            rede = 'Sonda'
             col_dia = 2
             col_min = 3
             col_irrad = 4
