@@ -5,8 +5,13 @@ import csv
 # http://sonda.ccst.inpe.br/basedados/index.html
 
 planilha = 'BRB1511ED.csv'
+listaunica = 'ListaUnicaCompleta_201606.txt'
+estacoesin = 'estacao_201710.txt'
+estacoesout = 'out.txt'
+
 ano = int(planilha[3:5])
 mes = int(planilha[5:7])
+sigla = planilha[:3]
 
 x=[]
 y=[]
@@ -15,10 +20,6 @@ xmensal=[]
 ymensal=[]
 
 # Radiação Global Horizontal
-# Ignore! ==== planilha[3:5]
-# Passar de dia Juliano para dia conforme o mês == xmensal
-
-
 def plot_sonda():
     with open(planilha, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=';')
@@ -51,8 +52,7 @@ def plot_sonda():
             soma += float(row[col_irrad])
             total += 1
             
-        # Plotagem do ultimo dia,
-        # pois não há um próximo dia para realizar a comparação.
+        # Plotagem do ultimo dia, pois não há um próximo dia para realizar a comparação.
         diaria();
 
         # Plotagem mensal 
@@ -72,9 +72,7 @@ def diaria():
     media = soma/total
     plt.text(0.35, 1400, 'Média: %5.2f' % media, bbox={'facecolor':'red', 'alpha':0.5, 'pad':10})
 
-
-    diaplot  = (int(dia)-(int(diainicial)-1))
-    xmensal.append(diaplot)
+    xmensal.append(diajuliano(dia))
     ymensal.append(media)
 
     # Media Mensal
@@ -90,7 +88,6 @@ def diaria():
 
 # Plotagem Mensal
 def mensal():
-    global media, soma, total, somamensal, totalmensal
     plt.figure(1000)
     plt.plot(xmensal,ymensal, 'b-') #b- é azul
     plt.title("Rede Sonda - " + planilha[:7] +  " - Média Mensal")
@@ -104,10 +101,10 @@ def mensal():
     plt.text(3, 1400, 'Média: %5.2f' % mediamensal, bbox={'facecolor':'red', 'alpha':0.5, 'pad':10})
 
     # Limpa as Variaveis
-    xmensal.clear()
-    ymensal.clear()   
-    somamensal = 0
-    totalmensal = 0    
+    #xmensal.clear()
+    #ymensal.clear()   
+    #somamensal = 0
+    #totalmensal = 0    
     
 # Cabecalhos
 def versao(x):
@@ -122,11 +119,43 @@ def versao(x):
         col_min = 3
         col_irrad = 4
 
+# Converte o dia juliano em dia normal
+def diajuliano(x):
+    return int(x)-(int(diainicial)-1)
+
 # Converte minutos em horas
 def horamin(x):
     hora = int(x/60)
     minuto = (x%60)/100
-    return (hora + minuto) 
+    return (hora + minuto)
 
-plot_sonda()
-plt.show()
+# Encontra um Elemento em uma Lista
+def findElement(elemento, lista):
+    for i in range(0, len(lista)):
+        if(elemento == lista[i]):  return i;
+
+# Pega o ID da Estação
+def getID(sigla):
+    with open(listaunica) as lista:
+        reader = csv.reader(lista, delimiter='\t')
+        for row in reader:
+            if(sigla == row[6]): return row[0];
+
+# Atualiza estações
+def atualizar():    
+    with open(estacoesin) as tsvin, open(estacoesout, "w+") as tsvout:
+        reader = csv.reader(tsvin, delimiter=' ') # /t
+        output = csv.writer(tsvout, delimiter=':')
+        id = getID(sigla);
+        for row in reader:
+            if(id == row[0]):
+                for coluna in range(xmensal[0]+4, xmensal[-1]+5):
+                    if(row[coluna] == "-999"):
+                        posicao = findElement(coluna-4, xmensal);
+                        row[coluna] = str(ymensal[posicao]);
+                        
+            output.writerows(row);
+
+plot_sonda();
+atualizar();
+#plt.show() 
