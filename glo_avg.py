@@ -132,7 +132,7 @@ def horamin(x):
 # Encontra um Elemento em uma Lista
 def findElement(elemento, lista):
     for i in range(0, len(lista)):
-        if(elemento == lista[i]):  return i;
+        if(elemento == lista[i]): return i;
 
 # Pega o ID da Estação
 def getID(sigla):
@@ -143,19 +143,20 @@ def getID(sigla):
 
 # Atualiza estações
 def atualizar():    
-    with open(estacoesin) as tsvin, open(estacoesout, "w+") as tsvout:
+    with open(estacoesin, "r") as tsvin, open(estacoesout, "w+") as tsvout:
         reader = csv.reader(tsvin, delimiter=' ') # /t
-        output = csv.writer(tsvout, delimiter=':')
+        output = csv.writer(tsvout, delimiter=' ')
         id = getID(sigla);
         for row in reader:
-            if(id == row[0]):
-                for coluna in range(xmensal[0]+4, xmensal[-1]+5):
-                    if(row[coluna] == "-999"):
+            if(id == row[0]): # Identifica a estação
+                for coluna in range(xmensal[0]+4, xmensal[-1]+5): # Faz um loop durante as colunas dia.
+                    if(row[coluna] == "-999"): # Verifica se o dado é Nulo(-999).
                         posicao = findElement(coluna-4, xmensal);
-                        row[coluna] = str(ymensal[posicao]);
-                        
-            output.writerows(row);
-
+                        if(posicao != None): # Verifica se foi calculado a média para este dia;
+                            row[coluna] = str(ymensal[posicao]);
+                                         
+            output.writerow(row);
+            
 plot_sonda();
 atualizar();
-#plt.show() 
+plt.show() 
