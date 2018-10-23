@@ -182,6 +182,11 @@ def somararray(array):
     soma = 0;
     for i in range(len(array)): soma += array[i]
     return soma
+
+# Formata determinado numero para duas casas.    
+def formatn(numero):
+    numero = "%.2f" % numero
+    return float(numero)
     
 # Atualiza estações
 def atualizar():    
