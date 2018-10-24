@@ -18,10 +18,7 @@ Uso de dados da rede "[SONDA](http://sonda.ccst.inpe.br/)" para plotagem de grá
 <img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/316.png">
 
 ## Problemas
-    Não realiza a plotagem do ultimo dia.
 
 ## Em Desenvolvimento
-    Atualizar eixos
-    Gerar gráfico Média Mensal
-    Atualizar lista unica
-    Comparar Módelos GL old vs GL novo
+    Plotagem dispersão.
+    Formatar os dados a serem atualizados para duas casas.
