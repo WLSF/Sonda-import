@@ -15,9 +15,7 @@ xmensal=[]
 ymensal=[]
 
 # Radiação Global Horizontal
-# Ignore! ==== planilha[3:5]
 # Passar de dia Juliano para dia conforme o mês == xmensal
-
 
 def plot_sonda():
     with open(planilha, 'r') as csvfile:
@@ -51,8 +49,7 @@ def plot_sonda():
             soma += float(row[col_irrad])
             total += 1
             
-        # Plotagem do ultimo dia,
-        # pois não há um próximo dia para realizar a comparação.
+        # Plotagem do ultimo dia, pois não há um próximo dia para realizar a comparação.
         diaria();
 
         # Plotagem mensal 
@@ -72,9 +69,7 @@ def diaria():
     media = soma/total
     plt.text(0.35, 1400, 'Média: %5.2f' % media, bbox={'facecolor':'red', 'alpha':0.5, 'pad':10})
 
-
-    diaplot  = (int(dia)-(int(diainicial)-1))
-    xmensal.append(diaplot)
+    xmensal.append(diajuliano(dia))
     ymensal.append(media)
 
     # Media Mensal
@@ -126,7 +121,11 @@ def versao(x):
 def horamin(x):
     hora = int(x/60)
     minuto = (x%60)/100
-    return (hora + minuto) 
+    return (hora + minuto)
+
+# Converte diajuliano para dia normal
+def diajuliano(x):
+    return int(x)-(int(diainicial)-1);
 
 plot_sonda()
 plt.show()
