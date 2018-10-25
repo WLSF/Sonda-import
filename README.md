@@ -15,7 +15,7 @@ Uso de dados da rede "[SONDA](http://sonda.ccst.inpe.br/)" para plotagem de grá
 ## Imagens
 <img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/305.png">
 <img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/306.png">
-<img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/316.png">
+<img width="320" height="240" src="https://raw.githubusercontent.com/LuizFelipeNeves/Sonda-import/master/src/img/Figure_1000.png">
 
 ## Problemas
 Necessário tratamento dos dados, valores acima de 1600.
