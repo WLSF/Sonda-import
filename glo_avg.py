@@ -1,18 +1,19 @@
 import matplotlib.pyplot as plt
 import csv
 
-# Baixar dados BRB2017.
 # Plotagem disperção.
-# Formatar os dados a serem atualizados para duas casas.
 
 # http://sonda.ccst.inpe.br/infos/variaveis.html
 # http://sonda.ccst.inpe.br/basedados/index.html
 
-planilha = './DADOS/SONDA/2017/CPA1704ED.csv'
+# id CPA = 29968
+
+planilha = './DADOS/SONDA/2017/CPA1702ED.csv'
+estacoesin = './DADOS/GLESTACAO/2017/estacao_201702.txt'
+estacoesout = './DADOS/OUTPUT/estacao_201702.txt'
+dadosGL = './DADOS/GLGOES/2017/TabMGLGLB_Diar.201702.txt'
+
 listaunica = 'ListaUnicaCompleta_201606.txt'
-estacoesin = './DADOS/GLESTACAO/2017/estacao_201704.txt'
-estacoesout = './DADOS/OUTPUT/estacao_201704.txt'
-dadosGL = './DADOS/GLGOES/2017/TabMGLGLB_Diar.201704.txt'
 
 ano = int(planilha[22:24])
 mes = int(planilha[24:26])
@@ -84,8 +85,7 @@ def diaria():
     plt.ylabel('Irradiância (Wm-2)')
     plt.xlabel('Tempo (Horas)')
     plt.ylim(0, 1600)
-
-    total += 1 
+ 
     # Media
     media = soma/total
     plt.text(0.35, 1400, 'Média: %5.2f' % media, bbox={'facecolor':'blue', 'alpha':0.5, 'pad':10})
@@ -204,7 +204,7 @@ def atualizar():
                     if(row[coluna] == "-999"): # Verifica se o dado é Nulo(-999).
                         posicao = findElement(coluna-4, xmensal);
                         if(posicao != None): # Verifica se foi calculado a média para este dia;
-                            row[coluna] = str(ymensal[posicao]);
+                            row[coluna] = str(formatn(ymensal[posicao]));
                                          
             output.writerow(row);
 
