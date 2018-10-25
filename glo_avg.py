@@ -8,15 +8,15 @@ import csv
 # http://sonda.ccst.inpe.br/infos/variaveis.html
 # http://sonda.ccst.inpe.br/basedados/index.html
 
-planilha = 'BRB1511ED.csv'
+planilha = './DADOS/SONDA/2017/CPA1704ED.csv'
 listaunica = 'ListaUnicaCompleta_201606.txt'
-estacoesin = './DADOS/GLESTACAO/2017/estacao_201701.txt'
-estacoesout = './DADOS/OUTPUT/estacao_201701.txt'
-dadosGL = './DADOS/GLGOES/2017/TabMGLGLB_Diar.201701.txt'
+estacoesin = './DADOS/GLESTACAO/2017/estacao_201704.txt'
+estacoesout = './DADOS/OUTPUT/estacao_201704.txt'
+dadosGL = './DADOS/GLGOES/2017/TabMGLGLB_Diar.201704.txt'
 
-ano = int(planilha[3:5])
-mes = int(planilha[5:7])
-sigla = planilha[:3]
+ano = int(planilha[22:24])
+mes = int(planilha[24:26])
+sigla = planilha[19:22]
 
 x=[]
 y=[]
@@ -24,16 +24,10 @@ y=[]
 xmensal=[]
 ymensal=[]
 
-<<<<<<< HEAD
-# Radiação Global Horizontal
-# Passar de dia Juliano para dia conforme o mês == xmensal
-
-=======
 GLdia=[]
 GLir=[]
 
 # Inicio
->>>>>>> 48ee9adfb23f2b1c09d781239f663a5592744af7
 def plot_sonda():
     with open(planilha, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=';')
@@ -51,23 +45,26 @@ def plot_sonda():
         
         # Pega o dia inicial
         for row in plots:
-            dia = row[col_dia]
-            diainicial = row[col_dia]
-            break;
+            if(row[col_irrad] != "N/A"):     
+                dia = row[col_dia]
+                diainicial = row[col_dia]
+                break;
 
         # Faz a leitura dos dados do Modelo GL
         GL();
         
         # Plotagem diaria
         for row in plots:
-            if(dia != row[col_dia]):
-                diaria();
-                
-            dia = row[col_dia]  
-            x.append(horamin(int(row[col_min])))
-            y.append(float(row[col_irrad]))
-            soma += float(row[col_irrad])
-            total += 1
+            if(row[col_irrad] != "N/A"):
+                if(float(row[col_irrad]) >= 1600): print(row[col_irrad] + " - Dia: " + row[col_dia])    
+                if(dia != row[col_dia]):
+                    diaria();
+                    
+                dia = row[col_dia]  
+                x.append(horamin(int(row[col_min])))
+                y.append(float(row[col_irrad]))
+                soma += float(row[col_irrad])
+                total += 1
             
         # Plotagem do ultimo dia, pois não há um próximo dia para realizar a comparação.
         diaria();
@@ -83,22 +80,17 @@ def diaria():
     global dia, diainicial, media, soma, total, somamensal, totalmensal
     plt.figure(dia)
     plt.plot(x,y, 'b-') #b- é azul
-    plt.title("Rede Sonda - " + planilha[:7] +  " - Dia [" + str(dia) + "]")
+    plt.title("Rede Sonda - " + planilha[19:26] +  " - Dia [" + str(dia) + "]")
     plt.ylabel('Irradiância (Wm-2)')
     plt.xlabel('Tempo (Horas)')
     plt.ylim(0, 1600)
 
+    total += 1 
     # Media
     media = soma/total
-<<<<<<< HEAD
-    plt.text(0.35, 1400, 'Média: %5.2f' % media, bbox={'facecolor':'red', 'alpha':0.5, 'pad':10})
-
-    xmensal.append(diajuliano(dia))
-=======
     plt.text(0.35, 1400, 'Média: %5.2f' % media, bbox={'facecolor':'blue', 'alpha':0.5, 'pad':10})
 
     xmensal.append(diajuliano(int(dia)))
->>>>>>> 48ee9adfb23f2b1c09d781239f663a5592744af7
     ymensal.append(media)
 
     # Media Mensal
@@ -117,7 +109,7 @@ def mensal():
     plt.figure(1000)
     plt.plot(xmensal,ymensal, 'b-') #b- é azul
     plt.plot(GLdia, GLir, 'r-') #r- é vermelho
-    plt.title("Rede Sonda - " + planilha[:7] +  " - Média Mensal")
+    plt.title("Rede Sonda - " + planilha[19:26] +  " - Média Mensal")
     plt.ylabel('Irradiância (Wm-2)')
     plt.xlabel('Dia')
     plt.ylim(0, 450)
@@ -168,14 +160,6 @@ def horamin(x):
     minuto = (x%60)/100
     return (hora + minuto)
 
-<<<<<<< HEAD
-# Converte diajuliano para dia normal
-def diajuliano(x):
-    return int(x)-(int(diainicial)-1);
-
-plot_sonda()
-plt.show()
-=======
 # Encontra um Elemento em uma Lista
 def findElement(elemento, lista):
     for i in range(len(lista)):
@@ -232,10 +216,10 @@ def GL():
         for row in reader:
             if(id == row[0]): # Identifica a estação
                 for coluna in range(5, numerodiasmes(mes)+5): # Faz um loop durante as colunas dia.
+
                     GLdia.append(coluna-4)
                     GLir.append(float(row[coluna]))              
                 break;
         
 plot_sonda();
 plt.show();
->>>>>>> 48ee9adfb23f2b1c09d781239f663a5592744af7
