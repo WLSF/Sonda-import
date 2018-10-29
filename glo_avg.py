@@ -216,7 +216,6 @@ def GL():
         for row in reader:
             if(id == row[0]): # Identifica a estação
                 for coluna in range(5, numerodiasmes(mes)+5): # Faz um loop durante as colunas dia.
-
                     GLdia.append(coluna-4)
                     GLir.append(float(row[coluna]))              
                 break;
