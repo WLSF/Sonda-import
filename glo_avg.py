@@ -8,10 +8,10 @@ import csv
 
 # id CPA = 29968
 
-planilha = './DADOS/SONDA/2017/CPA1702ED.csv'
-estacoesin = './DADOS/GLESTACAO/2017/estacao_201702.txt'
-estacoesout = './DADOS/OUTPUT/estacao_201702.txt'
-dadosGL = './DADOS/GLGOES/2017/TabMGLGLB_Diar.201702.txt'
+planilha = './DADOS/SONDA/2017/CPA1701ED.csv'
+estacoesin = './DADOS/GLESTACAO/2017/estacao_201701.txt'
+estacoesout = './DADOS/OUTPUT/estacao_201701.txt'
+dadosGL = './DADOS/GLGOES/2017/TabMGLGLB_Diar.201701.txt'
 
 listaunica = 'ListaUnicaCompleta_201606.txt'
 
@@ -32,17 +32,23 @@ GLir=[]
 def plot_sonda():
     with open(planilha, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=';')
-        global dia, diainicial, media, soma, total, somamensal, totalmensal
+        global diasmes, dia, diainicial, media, soma, total, somamensal, totalmensal
         total = 0
         soma = 0
         somamensal = 0
         totalmensal = 0
+
+        # Detecta se determinado ano é bissexto
+        if anobissexto(ano): diasmes = [31 , 29 , 31 , 30 , 31, 30, 31, 31, 30, 31,30, 31]; # É
+        else: diasmes = [31 , 28 , 31 , 30 , 31, 30, 31, 31, 30, 31,30, 31]; # N
         
         # Detecta a versao do cabecalho
         for row in plots:
             if(row[3].isdigit()): versao(1)
             else: versao(0)
             break;
+
+        diaprint = 0
         
         # Pega o dia inicial
         for row in plots:
@@ -50,18 +56,23 @@ def plot_sonda():
                 dia = row[col_dia]
                 diainicial = row[col_dia]
                 break;
+            else:
+                 if(diaprint != row[col_dia]):
+                     print(row[col_dia])
+                     diaprint = row[col_dia]
 
+             
         # Faz a leitura dos dados do Modelo GL
         GL();
         
         # Plotagem diaria
         for row in plots:
             if(row[col_irrad] != "N/A"):
-                if(float(row[col_irrad]) >= 1600): print(row[col_irrad] + " - Dia: " + row[col_dia])    
+                #if(float(row[col_irrad]) >= 1600): print(row[col_irrad] + " - Dia: " + row[col_dia])    
                 if(dia != row[col_dia]):
                     diaria();
-                    
-                dia = row[col_dia]  
+
+                dia = row[col_dia]    
                 x.append(horamin(int(row[col_min])))
                 y.append(float(row[col_irrad]))
                 soma += float(row[col_irrad])
@@ -78,12 +89,12 @@ def plot_sonda():
         
 # Plotagem diaria
 def diaria():
-    global dia, diainicial, media, soma, total, somamensal, totalmensal
+    global xmensal, ymensal, dia, diainicial, media, soma, total, somamensal, totalmensal
     plt.figure(dia)
     plt.plot(x,y, 'b-') #b- é azul
     plt.title("Rede Sonda - " + planilha[19:26] +  " - Dia [" + str(dia) + "]")
     plt.ylabel('Irradiância (Wm-2)')
-    plt.xlabel('Tempo (Horas)')
+    plt.xlabel('Tempo (Hora UTC)')
     plt.ylim(0, 1600)
  
     # Media
@@ -121,6 +132,7 @@ def mensal():
 
     # Media GL
     mediagl = somararray(GLir)/len(GLir)
+    
     plt.text(15, 400, 'Média GL: %5.2f' %mediagl, bbox={'facecolor':'red', 'alpha':0.5, 'pad':8})
 
     # Limpa as Variaveis
@@ -137,22 +149,24 @@ def versao(x):
        col_min = 4
        col_irrad = 5
             
-    elif(x == 1): # Sonda Novo
+    elif x == 1: # Sonda Novo
         col_dia = 2
         col_min = 3
         col_irrad = 4
 
 # Converte o dia juliano em dia normal
-def diajuliano(dia):
-    diasmes = [31 , 28 , 31 , 30 , 31, 30, 31, 31, 30, 31,30, 31];
-    mes = 1;
+def diajuliano(var):
+    #mes = 1;
+    #diasmes = [31 , 28 , 31 , 30 , 31, 30, 31, 31, 30, 31,30, 31];
     for m in range(1, 12):
-        if(dia - diasmes[m-1] >= 1):
-            dia = dia - diasmes[m-1]
-            mes += 1
-        else:
-            return dia; #print(format(dia, '02d') + "/" + format(mes, '02d'))
-            break;
+        if(var-diasmes[m-1] >= 1): var -= diasmes[m-1]
+        else: break;
+        #print(format(dia, '02d') + "/" + format(mes, '02d'))
+    return var
+
+def anobissexto(ano):
+    if(ano % 400 == 0 or ano % 4 == 0 and ano % 100 != 0): return True
+    else: return False
 
 # Converte minutos em horas
 def horamin(x):
@@ -178,7 +192,6 @@ def getID(sigla):
             
 # Retorna o numero de dias de determinado mes            
 def numerodiasmes(mes):
-    diasmes = [31 , 28 , 31 , 30 , 31, 30, 31, 31, 30, 31,30, 31];
     return diasmes[mes-1]
 
 # Soma todos os elementos de um array
@@ -200,7 +213,8 @@ def atualizar():
         id = getID(sigla);
         for row in reader:
             if(id == row[0]): # Identifica a estação
-                for coluna in range(xmensal[0]+4, xmensal[-1]+5): # Faz um loop durante as colunas dia.
+                #for coluna in range(xmensal[0]+4, xmensal[-1]+5): # Faz um loop durante as colunas dia.
+                for coluna in range(5, 36):
                     if(row[coluna] == "-999"): # Verifica se o dado é Nulo(-999).
                         posicao = findElement(coluna-4, xmensal);
                         if(posicao != None): # Verifica se foi calculado a média para este dia;
@@ -216,9 +230,11 @@ def GL():
         for row in reader:
             if(id == row[0]): # Identifica a estação
                 for coluna in range(5, numerodiasmes(mes)+5): # Faz um loop durante as colunas dia.
-                    GLdia.append(coluna-4)
-                    GLir.append(float(row[coluna]))              
+                    if(row[coluna] != "-999"):
+                        GLdia.append(coluna-4)
+                        GLir.append(float(row[coluna]))
+                        #if float(row[coluna]) <= 0: print(row[coluna])
                 break;
-        
+
 plot_sonda();
 plt.show();
