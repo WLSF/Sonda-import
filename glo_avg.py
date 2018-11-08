@@ -1,17 +1,15 @@
 import matplotlib.pyplot as plt
 import csv
 
-# Plotagem disperção.
-
 # http://sonda.ccst.inpe.br/infos/variaveis.html
 # http://sonda.ccst.inpe.br/basedados/index.html
 
 # id CPA = 29968
 
-planilha = './DADOS/SONDA/2017/CPA1701ED.csv'
-estacoesin = './DADOS/GLESTACAO/2017/estacao_201701.txt'
-estacoesout = './DADOS/OUTPUT/estacao_201701.txt'
-dadosGL = './DADOS/GLGOES/2017/TabMGLGLB_Diar.201701.txt'
+planilha = './DADOS/SONDA/2017/CPA1704ED.csv'
+estacoesin = './DADOS/GLESTACAO/2017/estacao_201704.txt'
+estacoesout = './DADOS/OUTPUT/estacao_201704.txt'
+dadosGL = './DADOS/GLGOES/2017/TabMGLGLB_Diar.201704.txt'
 
 listaunica = 'ListaUnicaCompleta_201606.txt'
 
@@ -84,6 +82,9 @@ def plot_sonda():
         # Plotagem mensal 
         mensal();
 
+        # Plotagem dispersao
+        dispersao();
+
         # Atualiza Estacoes
         atualizar();
         
@@ -140,7 +141,16 @@ def mensal():
     #ymensal.clear()   
     #somamensal = 0
     #totalmensal = 0    
-    
+
+def dispersao():
+    plt.figure('dispersao')
+    plt.title("Rede Sonda - " + planilha[19:26] +  " - Dispersão")
+    plt.ylabel('Irradiância (Wm-2)')
+    plt.xlabel('Dia')
+    plt.scatter(xmensal,ymensal, c='blue', label='Média Sonda')
+    plt.scatter(GLdia, GLir, c='red', label='Média GL')
+    plt.legend(bbox_to_anchor=(0.5, 1), loc='upper left', borderaxespad=0.)
+
 # Define a versao do Cabecalhos
 def versao(x):
     global col_dia, col_min, col_irrad, rede
