@@ -42,9 +42,11 @@ def plot_sonda():
         
         # Detecta a versao do cabecalho
         for row in plots:
-            if(row[3].isdigit()): versao(1)
-            else: versao(0)
-            break;
+            if(row[3].isdigit()):
+                versao(1)
+            else:
+                versao(0)
+            break
 
         diaprint = 0
         
@@ -191,14 +193,13 @@ def findElement(elemento, lista):
             return i;
             break;
 
-# Pega o ID da Estação
 def getID(sigla):
-    with open(listaunica) as lista:
-        reader = csv.reader(lista, delimiter='\t')
+    with open(listaunica, encoding='mac_roman', mode='r') as file:
+        reader = csv.reader(file, delimiter='\t')
         for row in reader:
-            if(sigla == row[6]):
-                return row[0];
-                break;
+            if sigla == row[6]:
+                return row[0]
+                break
             
 # Retorna o numero de dias de determinado mes            
 def numerodiasmes(mes):
@@ -248,3 +249,4 @@ def GL():
 
 plot_sonda();
 plt.show();
+
